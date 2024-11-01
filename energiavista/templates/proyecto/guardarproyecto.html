@@ -1,0 +1,65 @@
+{% extends 'template.html' %}
+{% block content %}
+
+<div class="page-title" data-aos="fade">
+    <div class="heading">
+      <div class="container">
+        <div class="row d-flex justify-content-center text-center">
+          <div class="col-lg-8">
+            <h1>Guardar</h1>
+            <p class="mb-0"> gozadera</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li class="current">Courses</li>
+        </ol>
+      </div>
+    </nav>
+  </div><!-- End Page Title -->
+
+
+<div class="container mt-5">
+    <h2>Formulario para Guardar Proyecto</h2>
+    <form class="row g-3" method="post" action="/proyecto/crear">
+        <div class="form-group">
+            <label for="nom">Nombre del Proyecto</label>
+            <input type="text" class="form-control"  name="nom" required>
+        </div>
+        <div class="form-group">
+            <label for="inver">Inversión</label>
+            <input type="number" class="form-control"  name="inver" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="tiv">Tiempo de Vida (años)</label>
+            <input type="number" class="form-control"  name="tiv" required>
+        </div>
+        <div class="form-group">
+            <label for="fI">Fecha de Inicio</label>
+            <input type="date" class="form-control"  name="fI" required>
+        </div>
+        <div class="form-group">
+            <label for="fF">Fecha de Fin</label>
+            <input type="date" class="form-control"  name="fF" required>
+        </div>
+        <div class="form-group">
+            <label for="egpd">Electricidad Generada por Día (MW)</label>
+            <input type="number" class="form-control"  name="egpd" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="acr">Acrónimo</label>
+            <input type="text" class="form-control" name="acr" required>
+        </div>
+        <div class="form-group">
+            <label for="ct">Costo Total</label>
+            <input type="number" class="form-control" name="ct" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Proyecto</button>
+    </form>
+</div>
+
+{% endblock %}
