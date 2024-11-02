@@ -1,51 +1,75 @@
 package com.ejemplo.rest;
 
+import java.util.Collections;
 import java.util.HashMap;
+import controller.tda.list.LinkedList;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import controller.Dao.servicies.InversionistaServices;
+import controller.Dao.servicies.ProyectoServices;
+import models.Inversionista;
+import controller.tda.list.LinkedList;;
+
+
 @Path("/inversionista")
 public class InversionistaApi {
-   @Path("/listai")
-   @GET
-   @Produces(MediaType.APPLICATION_JSON)
-   public Response getAllInversionista() {
-       HashMap map = new HashMap<>();
-       InversionistaServices is = new InversionistaServices();
-       map.put("msg", "Lista de inversionistas");
-       map.put("data", is.listAll().toArray());
-       return Response.ok(map).build();		
-   }
 
-    @Path("/guardari")
+@Path("/listas/{acronimo}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getRelacion(@PathParam("acronimo") String acronimo) throws Exception {
+    HashMap<String, Object> map = new HashMap<>();
+    InversionistaServices is = new InversionistaServices();
+    
+    // Filtra los inversionistas relacionados con el acrónimo
+    LinkedList<Inversionista> lista = is.listAll().filter(acronimo);
+
+    if (lista.isEmpty()) {
+        map.put("msg", "No hay inversionistas relacionados con el proyecto");
+        map.put("data", new Object[]{});
+    } else {
+        map.put("msg", "Lista de inversionistas relacionados con el proyecto");
+        map.put("data", lista.toArray());
+    }
+    
+    return Response.ok(map).build();
+}
+
+    
+
+
+    @Path("/asociar/{acronimo}")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response save(HashMap map) {
-        InversionistaServices is = new InversionistaServices();
-        is.getInversionista().setNombre(map.get("nombre").toString());
-        is.getInversionista().setApellido(map.get("apellido").toString());
-        is.getInversionista().setDni(map.get("dni").toString());
-        is.getInversionista().setTelefono(map.get("telefono").toString());
-        HashMap res = new HashMap<>();
+    public Response save(HashMap<String, String> map, @PathParam("acronimo") String acronimo) throws Exception {
+        HashMap<String, String> res = new HashMap<>();
         try {
-            if(is.save()){
-            res.put("msg", "ok");
-            res.put("data", "Guardado con exito");
-            }else{
+            InversionistaServices is = new InversionistaServices();
+            Inversionista inversionista = is.getInversionista();
+            inversionista.setNombre(map.get("nombre"));
+            inversionista.setApellido(map.get("apellido"));
+            inversionista.setDni(map.get("dni"));
+            inversionista.setTelefono(map.get("telefono"));
+            inversionista.setIdpropiedad(acronimo); // Establece el nombre del proyecto en lugar del id
+            is.setInversionista(inversionista); // Guarda el objeto Inversionista en el servicio
+            is.save(); // Llama al método save del servicio
+            res.put("msg", "Inversionista asociado correctamente");
+            return Response.ok(res).build();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.toString());
             res.put("msg", "ERROR");
-            res.put("data", "Error al guardar");
-            return Response.status(Response.Status.BAD_REQUEST).entity(res).build();
-            }
-        } catch (Exception ex) {
-            res.put("msg", "ERROR");
-            res.put("data", ex.getMessage());   
+            res.put("data", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
-        return Response.ok(res).build();
-        }
+    }
+    
+
 }

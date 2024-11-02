@@ -42,5 +42,7 @@ public class ProyectoDao extends AdapterDao<Proyecto> {
         this.listAll = listAll();
         return true;
     }
+
+    
     
 }

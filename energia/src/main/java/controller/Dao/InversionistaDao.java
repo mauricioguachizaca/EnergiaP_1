@@ -19,7 +19,7 @@ public class InversionistaDao extends AdapterDao<Inversionista> {
         return this.inversionista;
     }
     
-    public void setProyecto(Inversionista inversionista) {
+    public void setInversionista(Inversionista inversionista) {
         this.inversionista = inversionista;
     }
 
@@ -31,9 +31,21 @@ public class InversionistaDao extends AdapterDao<Inversionista> {
     }
 
     public Boolean save() throws Exception {
-        Integer id = getListAll().getSize()+1;
-        getInversionista().setIdInversionista(id);
-        persist(getInversionista());
+        if (getInversionista().getIdpropiedad() == null) {
+            throw new Exception("idpropiedad no está configurado para el inversionista");
+        }
+        Integer id = getListAll().getSize() + 1;
+        getInversionista().setIdInversionista(id); // Asigna un nuevo id
+        persist(getInversionista()); // Guarda el inversionista
         return true;
     }
+    
+
+
+    public Boolean update() throws Exception {
+        this.merge(getInversionista(),getInversionista().getIdInversionista() - 1);
+        this.listAll = listAll();
+        return true;
+    }
+
 }

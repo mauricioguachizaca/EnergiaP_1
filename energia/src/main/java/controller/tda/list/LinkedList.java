@@ -1,6 +1,7 @@
 package controller.tda.list;
 
 import controller.tda.list.LinkedList;
+import models.Inversionista;
 
 public class LinkedList<E> {
     private Node<E> header; // Nodo cabecera (el primer nodo de la lista)
@@ -266,5 +267,56 @@ public class LinkedList<E> {
         }
         return this;
     }
-
+    
+    public LinkedList<E> filter(Object data) throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, la lista está vacía");
+        }
+        
+        E[] array = toArray();
+        LinkedList<E> aux = new LinkedList<>();
+        
+        for (E element : array) {
+            try {
+                java.lang.reflect.Field idpropiedadField = element.getClass().getDeclaredField("idpropiedad");
+                idpropiedadField.setAccessible(true);
+                
+                Object idpropiedadValue = idpropiedadField.get(element);
+                System.out.println("Comparando idpropiedad: " + idpropiedadValue + " con: " + data); // Debug
+                
+                if (idpropiedadValue != null && idpropiedadValue.equals(data)) {
+                    aux.add(element);
+                }
+            } catch (NoSuchFieldException e) {
+                System.out.println("Campo 'idpropiedad' no encontrado en la clase " + element.getClass().getName());
+                continue;
+            } catch (IllegalAccessException e) {
+                System.out.println("Error de acceso al campo 'idpropiedad' en la clase " + element.getClass().getName());
+                continue;
+            }
+        }
+        
+        return aux;
+    }
+    
+     
+    public boolean exist(Object data) {
+        Node<E> node = header;
+        while (node != null) {
+            try {
+                // Verificar si el objeto tiene el campo '_dni'
+                java.lang.reflect.Field idProyectoField = node.getInfo().getClass().getDeclaredField("idProyecto");
+                idProyectoField.setAccessible(true);
+                if (idProyectoField.get(node.getInfo()).equals(data)) {
+                    System.out.println("Ya existe un nodo con este dato (_dni)");
+                    return true;
+                }
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                // Si el campo no existe, ignóralo y continúa
+            }
+            node = node.getNext();
+        }
+        return false;
+    }
+    
 }

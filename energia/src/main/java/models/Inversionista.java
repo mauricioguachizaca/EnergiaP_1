@@ -3,12 +3,12 @@ package models;
 // Clase que representa a un inversionista
 public class Inversionista {
     // Atributos privados de la clase
-    private int idInversionista; // Identificador único del inversionista
+    private Integer idInversionista; // Identificador único del inversionista
     private String nombre; // Nombre del inversionista
     private String apellido;
     private String dni;
     private String telefono;
-    private String idproyecto;   // Monto de la inversión del inversionista
+    private String idpropiedad;   // Monto de la inversión del inversionista
 
     // Constructor por defecto
     public Inversionista(){
@@ -16,22 +16,22 @@ public class Inversionista {
     }
     
     // Constructor con parámetros para inicializar todos los atributos
-    public Inversionista(int idInversionista, String nombre, String apellido, String dni, String telefono, String idproyecto) {
+    public Inversionista(Integer idInversionista, String nombre, String apellido, String dni, String telefono, String idpropiedad) {
         this.idInversionista = idInversionista;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.telefono = telefono;
-        this.idproyecto = idproyecto;
+        this.idpropiedad = idpropiedad;
     }
    
     // Método getter para obtener el id del inversionista
-    public int getIdInversionista() {
+    public Integer getIdInversionista() {
         return idInversionista;
     }
 
     // Método setter para establecer el id del inversionista
-    public void setIdInversionista(int idInversionista) {
+    public void setIdInversionista(Integer idInversionista) {
         this.idInversionista = idInversionista;
     }
 
@@ -76,13 +76,13 @@ public class Inversionista {
     }
 
     // Método getter para obtener el id del proyecto del inversionista
-    public String getIdproyecto() {
-        return idproyecto;
+    public String getIdpropiedad() {
+        return idpropiedad;
     }
 
     // Método setter para establecer el id del proyecto del inversionista
-    public void setIdproyecto(String idproyecto) {
-        this.idproyecto = idproyecto;
+    public void setIdpropiedad(String idpropiedad) {
+        this.idpropiedad = idpropiedad;
     }
 
 }
