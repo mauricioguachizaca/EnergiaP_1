@@ -2,6 +2,8 @@ package com.ejemplo.rest;
 
 import java.util.HashMap;
 import controller.tda.list.LinkedList;
+
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -62,6 +64,5 @@ public Response getRelacion(@PathParam("acronimo") String acronimo) throws Excep
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
-    
 
 }

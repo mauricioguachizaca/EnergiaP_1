@@ -33,6 +33,10 @@ public class ProyectoServices {
         return obj.get(id);
     }
 
+    public Boolean delete(Integer id) throws Exception {
+        return obj.delete(id);
+    }
+
     
     
 

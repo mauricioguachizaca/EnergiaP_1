@@ -43,6 +43,17 @@ public class ProyectoDao extends AdapterDao<Proyecto> {
         return true;
     }
 
+    public Boolean delete(Integer id) throws Exception {
+        for(int i = 0; i < getListAll().getSize(); i++) {
+            Proyecto pro = getListAll().get(i);
+            if(pro.getIdProyecto().equals(id)) {
+                getListAll().delete(i);
+                return true;
+            }
+        }
+        throw new Exception("Proyecto no encontrado con ID: " + id);
+    }
+
     
     
 }

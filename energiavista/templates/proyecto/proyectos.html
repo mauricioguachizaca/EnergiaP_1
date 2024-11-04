@@ -17,11 +17,11 @@
       </div>
     </nav>
   </div><!-- End Page Title -->
+  
   <!-- Courses Section -->
   <section id="courses" class="courses section">
 
     <div class="container">
-
         <div class="container mt-5">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -51,9 +51,14 @@
                         <td>{{item.acronimo}}</td>
                         <td>{{item.costototal}}</td>
                         <td>
-                            <div class="btn-group-custom">
-                            <a type="button" class="btn btn-primary btn-sm" href="/proyecto/editar/{{item.idProyecto}}">Editar</a>
-                            <a type="button" class="btn btn-success btn-sm" href="/inversionista/{{item.acronimo}}">Ver Inversionista</a>
+                            <div class="btn-group">
+                                <div>
+                                    <a type="button" class="btn btn-primary btn-sm me-2" href="/proyecto/editar/{{item.idProyecto}}">Editar</a>
+                                    <a type="button" class="btn btn-danger btn-sm me-2" href="/proyecto/eliminar/{{item.idProyecto}}">Eliminar</a>
+                                </div>
+                                <div class="mt-2">
+                                    <a type="button" class="btn btn-success btn-sm" href="/inversionista/listas/{{item.acronimo}}">Ver Inversionista</a>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -61,30 +66,7 @@
                 </tbody>
             </table>
         </div>
-
-
     </div>
 
   </section><!-- /Courses Section -->
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -40,6 +40,21 @@ def crear_proyecto():
         flash(str(dat["message"]), category='error')
         return redirect('/listas/proyecto')
     
+##Eliminar el proyecto
+@router.route('/proyecto/eliminar/<id>', methods=['DELETE'])
+def eliminar_proyecto(id):
+    headers = {'Content-Type': 'application/json'}
+    r = requests.delete(f'http://localhost:8099/api/proyecto/eliminar/{id}', headers=headers)
+
+    if r.status_code == 200:
+        flash("Proyecto eliminado correctamente", category='info')
+    else:
+        dat = r.json()
+        flash(str(dat.get("message", "Error al eliminar el proyecto")), category='error')
+    
+    return redirect('/listas/proyecto')
+
+    
 ##Vista del guardar proyecto
 @router.route('/proyecto/formulario')
 def formulario_proyecto():

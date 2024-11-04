@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import controller.Dao.servicies.TransaccionServices;
-import models.Proyecto;
 import controller.Dao.servicies.ProyectoServices;
 @Path("/proyecto")
 public class ProyectoApi {
@@ -131,6 +131,35 @@ public Response update(HashMap<String, Object> map) {
    
     
     }
+
+@Path("/eliminar/{id}")
+@DELETE
+@Produces(MediaType.APPLICATION_JSON)
+public Response delete(@PathParam("id") Integer id) {
+    HashMap<String, Object> res = new HashMap<>();
+    try {
+        ProyectoServices ps = new ProyectoServices();
+        ps.setProyecto(ps.get(id)); // Se obtiene el proyecto antes de eliminarlo.
+        if (ps.delete(id)) { // Llama al método delete del servicio.
+            transaccionServices.registrarTransaccion("Eliminar Proyecto", 
+                ps.getProyecto().getIdProyecto().toString(), 
+                "Proyecto Eliminado: " + ps.getProyecto().getNombre());
+            res.put("msg", "ok");
+            res.put("data", "Eliminado con éxito");
+            return Response.ok(res).build(); // Respuesta exitosa.
+        } else {
+            res.put("msg", "ERROR");
+            res.put("data", "Error al eliminar");
+            return Response.status(Response.Status.BAD_REQUEST).entity(res).build(); // Error en eliminación.
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.toString());
+        res.put("msg", "ERROR");
+        res.put("data", e.getMessage());
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build(); // Error interno del servidor.
+    }
+}
+
 
 }
    

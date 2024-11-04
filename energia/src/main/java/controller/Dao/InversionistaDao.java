@@ -40,12 +40,22 @@ public class InversionistaDao extends AdapterDao<Inversionista> {
         return true;
     }
     
-
-
     public Boolean update() throws Exception {
         this.merge(getInversionista(),getInversionista().getIdInversionista() - 1);
         this.listAll = listAll();
         return true;
+    }
+
+    public Boolean delete(Integer id) throws Exception {
+        // Comprobar si el Inversionista existe antes de intentar eliminarlo
+        for (int i = 0; i < getListAll().getSize(); i++) {
+            Inversionista inv = getListAll().get(i);
+            if (inv.getIdInversionista().equals(id)) { // Usar equals() para comparación de Integer
+                getListAll().delete(i);
+                return true; // Eliminado correctamente
+            }
+        }
+        throw new Exception("Inversionista no encontrado con ID: " + id); // No encontrado
     }
 
 }

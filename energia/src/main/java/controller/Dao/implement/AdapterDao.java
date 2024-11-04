@@ -85,6 +85,8 @@ public class AdapterDao<T> implements InterfazDao<T> {
         return sb.toString().trim();
     }
 
+    
+
     private void saveFile(String data) throws Exception {
         File file = new File(filePath + clazz.getSimpleName() + ".json");
         file.getParentFile().mkdirs();

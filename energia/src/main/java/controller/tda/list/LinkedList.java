@@ -139,25 +139,28 @@ public class LinkedList<E> {
     }
 
     public E delete(Integer post) throws ListEmptyException {
-        if(isEmpty()) {
+        if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacia");
         } else if (post < 0 || post >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
         } else if (post == 0) {
-            return deleteFirst();
+            return deleteFirst(); // Llama a deleteFirst para eliminar el primer nodo
         } else if (post == (size - 1)) {
-            return deleteLast();
+            return deleteLast(); // Llama a deleteLast para eliminar el último nodo
         } else {
-            Node<E> preview = getNode(post - 1);
-            Node<E> actually = getNode(post);
-            E element = preview.getInfo();
-            Node<E> next = actually.getNext();
-            actually = null;
-            preview.setNext(next);
-            size--;
-            return element;
+            Node<E> preview = getNode(post - 1); // Nodo anterior al que se eliminará
+            Node<E> actual = getNode(post); // Nodo que se eliminará
+            E element = actual.getInfo(); // Guardar el dato del nodo a eliminar
+    
+            Node<E> next = actual.getNext(); // Nodo siguiente al que se eliminará
+            preview.setNext(next); // Conectar el nodo previo con el siguiente
+    
+            // Si se elimina un nodo del medio, no necesitamos cambiar last
+            size--; // Reducir el tamaño de la lista
+            return element; // Retornar el elemento eliminado
         }
     }
+    
 
 
 
