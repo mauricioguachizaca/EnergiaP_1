@@ -12,15 +12,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
+import controller.Dao.servicies.TransaccionServices;
+import models.Proyecto;
 import controller.Dao.servicies.ProyectoServices;
 @Path("/proyecto")
 public class ProyectoApi {
+    private TransaccionServices transaccionServices = new TransaccionServices();
     @Path("/lista")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllProyecto() {
-        HashMap map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         ProyectoServices ps = new ProyectoServices();
         map.put("msg", "Lista de proyectos");
         map.put("data", ps.listAll().toArray());
@@ -34,8 +36,8 @@ public class ProyectoApi {
 @POST
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public Response save(HashMap map) {
-    HashMap res = new HashMap<>();
+public Response save(HashMap<String, Object> map) {
+    HashMap<String, Object> res = new HashMap<>();
 
     ProyectoServices ps = new ProyectoServices();
     
@@ -60,6 +62,7 @@ public Response save(HashMap map) {
         ps.getProyecto().setCostototal(Float.parseFloat(map.get("costototal").toString()));
         
         if (ps.save()) {
+            transaccionServices.registrarTransaccion("Guardar Proyecto", ps.getProyecto().getIdProyecto().toString(), "Proyecto creado: " + ps.getProyecto().getNombre());
             res.put("msg", "ok");
             res.put("data", "Guardado con éxito");
             return Response.ok(res).build();
@@ -80,7 +83,7 @@ public Response save(HashMap map) {
 @GET	
 @Produces(MediaType.APPLICATION_JSON)
 public Response getProyec(@PathParam("id") Integer id) {
-    HashMap map = new HashMap<>();
+    HashMap<String, Object> map = new HashMap<>();
     ProyectoServices ps = new ProyectoServices();
     try {
         ps.setProyecto(ps.get(id));
@@ -99,8 +102,8 @@ public Response getProyec(@PathParam("id") Integer id) {
 @POST
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public Response update(HashMap map) {
-    HashMap res = new HashMap<>();    
+public Response update(HashMap<String, Object> map) {
+    HashMap<String, Object> res = new HashMap<>();    
     try {
         ProyectoServices ps = new ProyectoServices();
         ps.setProyecto(ps.get(Integer.parseInt(map.get("idProyecto").toString())));
@@ -114,6 +117,7 @@ public Response update(HashMap map) {
         ps.getProyecto().setCostototal(Float.parseFloat(map.get("costototal").toString()));
         
         ps.update();
+        transaccionServices.registrarTransaccion("Edicion Proyecto", ps.getProyecto().getIdProyecto().toString(), "Proyecto Editado: " + ps.getProyecto().getNombre());
         res.put("msg", "ok");
         res.put("data", "Editado con éxito");
         return Response.ok(res).build();

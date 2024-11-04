@@ -1,0 +1,28 @@
+{% extends 'template.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1>Lista de Transacciones</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>ID Proyecto</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaccion in lista %}
+            <tr>
+                <td>{{ transaccion.idTransaccion }}</td>
+                <td>{{ transaccion.tipo }}</td>
+                <td>{{ transaccion.idProyecto }}</td>
+                <td>{{ transaccion.descripcion }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

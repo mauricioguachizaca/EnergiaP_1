@@ -1,78 +1,47 @@
-package models; // Define el paquete donde se encuentra la clase
-
-import java.sql.Date; // Importa la clase Date de java.sql para manejar fechas
+package models;
 
 public class Transaccion {
-    // Atributos privados de la clase
-    private int idTransaccion; // Identificador único de la transacción
-    private String tipo; // Tipo de transacción (por ejemplo, ingreso, gasto)
-    private Date fecha; // Fecha de la transacción
-    private String idproyecto; // Descripción de la transacción
-    private String idinversionista;
+    private String tipo;
+    private String idProyecto;
+    private String descripcion;
+    private Integer idTransaccion; // Agrega el ID para la transacción
 
-    // Constructor por defecto
-    
-
-    // Constructor con parámetros para inicializar todos los atributos
-    public Transaccion(int idTransaccion, String tipo, Date fecha, String idproyecto, String idinversionista) {
-        this.idTransaccion = idTransaccion; // Inicializa el id de la transacción
-        this.tipo = tipo; // Inicializa el tipo de la transacción
-        this.fecha = fecha; // Inicializa la fecha de la transacción
-        this.idproyecto = idproyecto; // Inicializa la descripción de la transacción
-        this.idinversionista = idinversionista;
-    }
-    
-
-    public int getIdTransaccion() {
-        return idTransaccion; // Devuelve el id de la transacción
+    public Transaccion(String tipo, String idProyecto, String descripcion) {
+        this.tipo = tipo;
+        this.idProyecto = idProyecto;
+        this.descripcion = descripcion;
     }
 
-    public void setIdTransaccion(int idTransaccion) {
-        this.idTransaccion = idTransaccion; // Establece el id de la transacción
-    }
-
+    // Getters y Setters
     public String getTipo() {
-        return tipo; // Devuelve el tipo de la transacción
+        return tipo;
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo; // Establece el tipo de la transacción
+        this.tipo = tipo;
     }
 
-    public Date getFecha() {
-        return fecha; // Devuelve la fecha de la transacción
+    public String getIdProyecto() {
+        return idProyecto;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha; // Establece la fecha de la transacción
+    public void setIdProyecto(String idProyecto) {
+        this.idProyecto = idProyecto;
     }
 
-    public String getIdproyecto() {
-        return idproyecto; // Devuelve la descripción de la transacción
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setIdproyecto(String idproyecto) {
-        this.idproyecto = idproyecto; // Establece la descripción de la transacción
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getIdinversionista() {
-        return idinversionista; // Devuelve la descripción de la transacción
+    public Integer getIdTransaccion() {
+        return idTransaccion;
     }
 
-    public void setIdinversionista(String idinversionista) {
-        this.idinversionista = idinversionista; // Establece la descripción de la transacción
-    }
-
-
-
-
-
-    public Transaccion(){
-        // No hace nada, solo inicializa una instancia vacía
+    public void setIdTransaccion(Integer idTransaccion) {
+        this.idTransaccion = idTransaccion;
     }
 }
-
-
-
-
-

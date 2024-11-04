@@ -3,25 +3,29 @@ package controller.Dao.servicies;
 import controller.Dao.TransaccionDao;
 import controller.tda.list.LinkedList;
 import models.Transaccion;
+
 public class TransaccionServices {
-    private TransaccionDao obj;
-    public TransaccionServices(){
-        obj = new TransaccionDao();
+    private TransaccionDao transaccionDao;
+
+    public TransaccionServices() {
+        transaccionDao = new TransaccionDao();
     }
 
-    public Boolean save() throws Exception {
-        return obj.save();
+    public void registrarTransaccion(String tipo, String idProyecto, String descripcion) {
+        Transaccion transaccion = new Transaccion(
+            tipo,
+            idProyecto,
+            descripcion
+        );
+        try {
+            transaccionDao.save(transaccion); // Guarda la transacción en el DAO
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Manejo de excepciones
+        }
     }
 
-    public LinkedList<Transaccion> listAll(){
-        return obj.getListAll();
-    }
-
-    public Transaccion getTransaccion(){
-        return obj.getTransaccion();
-    }
-
-    public void setTransaccion(Transaccion transaccion) {
-        obj.setTransaccion(transaccion);
+    public LinkedList<Transaccion> listAllTransacciones() {
+        return transaccionDao.getListAll();
     }
 }

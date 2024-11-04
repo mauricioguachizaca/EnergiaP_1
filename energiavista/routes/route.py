@@ -82,6 +82,13 @@ def editarproyecto():
         flash(str(dat["message"]), category='error')
         return redirect('/listas/proyecto')
     
+## Endpoint para listar las transacciones
+@router.route('/transacciones')
+def listas_transacciones():
+    r = requests.get('http://localhost:8099/api/transaccion/lista')  # Asegúrate de que este sea el endpoint correcto
+    data = r.json()
+    
+    return render_template('transaccion/transacciones.html', lista=data["data"])
 
 
 ## inversionista routes
@@ -106,9 +113,6 @@ def formulario_asociar_inversionista(acronimo):
     proyecto_seleccionado = next((proyecto for proyecto in dataf["data"] if proyecto["acronimo"] == acronimo), None)
     return render_template('inversionista/guardarinversionista.html', lista  = data["data"], listaf = dataf["data"], proyecto = proyecto_seleccionado)
 
-
-
-
 @router.route('/inversionista/<acronimo>')
 def inversionistas(acronimo):
     # Obtener lista de inversionistas relacionados con el proyecto
@@ -122,10 +126,6 @@ def inversionistas(acronimo):
     # Filtrar el proyecto por acrónimo
     proyecto_seleccionado = next((proyecto for proyecto in dataf["data"] if proyecto["acronimo"] == acronimo), None)
     return render_template('templateinversion.html', lista = data["data"], listaf = dataf["data"], proyecto = proyecto_seleccionado)
-
-
-
-
 
 ## Asociar un inversionista a un proyecto
 @router.route('/inversionista/asociar/<acronimo>', methods=['POST'])
