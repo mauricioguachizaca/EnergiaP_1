@@ -13,10 +13,7 @@ public class Proyecto {
     private String acronimo; // Acrónimo del proyecto
     private Float costototal; // Costo total del proyecto
 
-    // Constructor por defecto
-    public Proyecto() {
-    }
-
+    
     // Constructor con parámetros para inicializar todos los atributos
     public Proyecto(Integer idProyecto, String nombre, Float inversion, Integer tiempodevida, String fechaInicio, String fechaFin, Float electicidadGeneradapordia,String acronimo, Float costototal) {
         this.idProyecto = idProyecto;
@@ -104,13 +101,12 @@ public class Proyecto {
         this.costototal = costototal;
     }
 
-    
-    
-    
-    
 
-    
-    
-    
+
+
+    // Constructor por defecto
+    public Proyecto() {
+    }
+
     
 }

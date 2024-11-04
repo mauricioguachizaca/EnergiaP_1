@@ -15,10 +15,6 @@ def listas_proyecto():
     data = r.json()
     return render_template('proyecto/proyectos.html', lista = data["data"])
 
-
-   
-
-
 ## Guardar el proyecto 
 @router.route('/proyecto/crear', methods=['POST'])
 def crear_proyecto():
@@ -92,29 +88,41 @@ def editarproyecto():
 ## Obtener la lista de inversionistas relacionados con un proyecto
 
 @router.route('/inversionista/listas/<acronimo>')
-def lista_inversionistas(acronimo):
-    r = requests.get(f'http://localhost:8099/api/inversionista/listas/{acronimo}')
+def listainversionistas(acronimo):
+    r = requests.get('http://localhost:8099/api/inversionista/listas/'+acronimo)
     data = r.json()
-    return render_template('inversionista/inversionistas.html', lista=data["data"])
+    r = requests.get('http://localhost:8099/api/proyecto/lista')
+    dataf = r.json()
+    proyecto_seleccionado = next((proyecto for proyecto in dataf["data"] if proyecto["acronimo"] == acronimo), None)
+    return render_template('inversionista/inversionistas.html', lista = data["data"], listaf = dataf["data"], proyecto = proyecto_seleccionado)
 
 @router.route('/inversionista/formulario/<acronimo>')
 def formulario_asociar_inversionista(acronimo):
-    r = requests.get(f'http://localhost:8099/api/inversionista/listas/{acronimo}')
+    r = requests.get('http://localhost:8099/api/inversionista/listas/'+acronimo)
     data = r.json()
-    return render_template('inversionista/guardarinversionista.html', lista=data["data"])
+    r = requests.get('http://localhost:8099/api/proyecto/lista')
+    dataf = r.json()
+
+    proyecto_seleccionado = next((proyecto for proyecto in dataf["data"] if proyecto["acronimo"] == acronimo), None)
+    return render_template('inversionista/guardarinversionista.html', lista  = data["data"], listaf = dataf["data"], proyecto = proyecto_seleccionado)
+
 
 
 
 @router.route('/inversionista/<acronimo>')
 def inversionistas(acronimo):
-    r = requests.get(f'http://localhost:8099/api/inversionista/listas/{acronimo}')
+    # Obtener lista de inversionistas relacionados con el proyecto
+    r = requests.get('http://localhost:8099/api/inversionista/listas/'+acronimo)
     data = r.json()
+
+    # Obtener la lista de proyectos y filtrar el proyecto seleccionado
+    r = requests.get('http://localhost:8099/api/proyecto/lista')
+    dataf = r.json()
     
-    if r.status_code == 200:
-        return render_template('templateinversion.html', lista=data["data"])
-    else:
-        flash(data["msg"], category='error')
-        return redirect('/listas/proyecto')
+    # Filtrar el proyecto por acrónimo
+    proyecto_seleccionado = next((proyecto for proyecto in dataf["data"] if proyecto["acronimo"] == acronimo), None)
+    return render_template('templateinversion.html', lista = data["data"], listaf = dataf["data"], proyecto = proyecto_seleccionado)
+
 
 
 
@@ -132,14 +140,14 @@ def asociar_inversionista(acronimo):
         "telefono": form['telefono'],
     }
     
-    r = requests.post(f'http://localhost:8099/api/inversionista/asociar/{acronimo}', headers=headers, data=json.dumps(dataF))
+    r = requests.post('http://localhost:8099/api/inversionista/asociar/'+acronimo, headers=headers, data=json.dumps(dataF))
     dat = r.json()
     
     if r.status_code == 200:
         flash("Inversionista asociado correctamente", category='info')
-        return redirect(f'/inversionista/listas/{acronimo}')
+        return redirect('/inversionista/listas/'+acronimo)
     else:
         flash(str(dat["msg"]), category='error')
-        return redirect(f'/inversionista/listas/{acronimo}')
+        return redirect('/inversionista/listas/'+acronimo)
 
 ## Formulario para asociar inversionista a proyecto

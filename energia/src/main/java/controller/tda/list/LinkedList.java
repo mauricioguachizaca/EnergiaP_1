@@ -1,7 +1,6 @@
 package controller.tda.list;
 
 import controller.tda.list.LinkedList;
-import models.Inversionista;
 
 public class LinkedList<E> {
     private Node<E> header; // Nodo cabecera (el primer nodo de la lista)

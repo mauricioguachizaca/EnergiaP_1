@@ -20,5 +20,27 @@
     "electicidadGeneradapordia": 60.0,
     "acronimo": "PE-Loja",
     "costototal": 8000000.0
+  },
+  {
+    "idProyecto": 3,
+    "nombre": "Paneles Solares Catamayo",
+    "inversion": 1.0e7,
+    "tiempodevida": 60,
+    "fechaInicio": "2024-11-03",
+    "fechaFin": "2025-11-23",
+    "electicidadGeneradapordia": 40.0,
+    "acronimo": "Ps-C",
+    "costototal": 2.0e7
+  },
+  {
+    "idProyecto": 4,
+    "nombre": "Planta Nuclear",
+    "inversion": 7.0e7,
+    "tiempodevida": 100,
+    "fechaInicio": "2024-11-03",
+    "fechaFin": "2026-11-12",
+    "electicidadGeneradapordia": 60.0,
+    "acronimo": "PN-R",
+    "costototal": 8.0e7
   }
 ]

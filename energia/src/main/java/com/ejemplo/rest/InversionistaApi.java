@@ -1,10 +1,7 @@
 package com.ejemplo.rest;
 
-import java.util.Collections;
 import java.util.HashMap;
 import controller.tda.list.LinkedList;
-import java.util.List;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,9 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import controller.Dao.servicies.InversionistaServices;
-import controller.Dao.servicies.ProyectoServices;
 import models.Inversionista;
-import controller.tda.list.LinkedList;;
 
 
 @Path("/inversionista")
@@ -42,9 +37,6 @@ public Response getRelacion(@PathParam("acronimo") String acronimo) throws Excep
     
     return Response.ok(map).build();
 }
-
-    
-
 
     @Path("/asociar/{acronimo}")
     @POST

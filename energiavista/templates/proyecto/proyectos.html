@@ -6,18 +6,14 @@
       <div class="container">
         <div class="row d-flex justify-content-center text-center">
           <div class="col-lg-8">
-            <h1>Courses</h1>
-            <p class="mb-0"> gozadera</p>
+            <h1>Listas de los proyectos</h1>
+            <p class="mb-0"> </p>
           </div>
         </div>
       </div>
     </div>
     <nav class="breadcrumbs">
       <div class="container">
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li class="current">Courses</li>
-        </ol>
       </div>
     </nav>
   </div><!-- End Page Title -->
@@ -56,9 +52,8 @@
                         <td>{{item.costototal}}</td>
                         <td>
                             <div class="btn-group-custom">
-                            <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
                             <a type="button" class="btn btn-primary btn-sm" href="/proyecto/editar/{{item.idProyecto}}">Editar</a>
-                            <a type="button" class="btn btn-success btn-sm" href="/inversionista/listas/{{item.acronimo}}">Agregar Inversionista</a>
+                            <a type="button" class="btn btn-success btn-sm" href="/inversionista/{{item.acronimo}}">Ver Inversionista</a>
                             </div>
                         </td>
                     </tr>

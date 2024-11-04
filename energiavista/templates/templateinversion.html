@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +46,7 @@
 
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-      <a href="/inversionista/listas/{{ lista[0].idpropiedad }}" class="logo d-flex align-items-center me-auto">
+      <a href="/inversionista/listas/{{proyecto.acronimo}}" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">Inversionistas  </h1>
@@ -57,9 +55,9 @@
 
          <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href='/inversionista/formulario/{{ lista[0].idpropiedad }}'>Crear Inversionista<br></a></li>
+            <li><a href="/inversionista/formulario/{{proyecto.acronimo}}" class="active">Crear Inversionista</a></li>
             <li><a href="/listas/proyecto" class="active">Regresar a los proyectos</a></li>
-            <li><a href="/inversionista/listas/{{ lista[0].idpropiedad }}">Listas de los Inversionistas</li>
+            <li><a href="/inversionista/listas/{{proyecto.acronimo}}" class="active">Listas de los Inversionistas</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -69,25 +67,22 @@
 
       </div>
   </header>
-
   <main class="main">
 
     <!-- Page Title -->
-    </section>
+    <section>
+      <div>
 {% block content %}
 
 {% endblock %}
-   
-      </div>
+
+</div>
 
     </section>
 
   </main>
  
 
- 
-
-  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->

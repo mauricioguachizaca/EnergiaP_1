@@ -11,9 +11,7 @@ public class Transaccion {
     private String idinversionista;
 
     // Constructor por defecto
-    public Transaccion(){
-        // No hace nada, solo inicializa una instancia vacía
-    }
+    
 
     // Constructor con parámetros para inicializar todos los atributos
     public Transaccion(int idTransaccion, String tipo, Date fecha, String idproyecto, String idinversionista) {
@@ -64,6 +62,17 @@ public class Transaccion {
     public void setIdinversionista(String idinversionista) {
         this.idinversionista = idinversionista; // Establece la descripción de la transacción
     }
+
+
+
+
+
+    public Transaccion(){
+        // No hace nada, solo inicializa una instancia vacía
+    }
 }
+
+
+
 
 

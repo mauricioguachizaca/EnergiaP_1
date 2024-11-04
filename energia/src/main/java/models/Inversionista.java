@@ -8,12 +8,9 @@ public class Inversionista {
     private String apellido;
     private String dni;
     private String telefono;
-    private String idpropiedad;   // Monto de la inversión del inversionista
+    private String idpropiedad;   
 
-    // Constructor por defecto
-    public Inversionista(){
-        
-    }
+   
     
     // Constructor con parámetros para inicializar todos los atributos
     public Inversionista(Integer idInversionista, String nombre, String apellido, String dni, String telefono, String idpropiedad) {
@@ -85,4 +82,19 @@ public class Inversionista {
         this.idpropiedad = idpropiedad;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+     // Constructor por defecto
+     public Inversionista(){
+        
+     }
 }
