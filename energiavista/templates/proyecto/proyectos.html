@@ -1,72 +1,263 @@
 {% extends 'template.html' %}
+
 {% block content %}
-   <!-- Page Title -->
+<!-- Page Title -->
 <div class="page-title" data-aos="fade">
-    <div class="heading">
+   <div class="heading">
       <div class="container">
-        <div class="row d-flex justify-content-center text-center">
-          <div class="col-lg-8">
-            <h1>Listas de los proyectos</h1>
-            <p class="mb-0"> </p>
-          </div>
-        </div>
+         <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+               <h1>Listas de los proyectos</h1>
+               <p class="mb-0"></p>
+            </div>
+         </div>
       </div>
-    </div>
-    <nav class="breadcrumbs">
-      <div class="container">
+   </div>
+   <nav class="breadcrumbs">
+      <div class="container"></div>
+   </nav>
+</div><!-- End Page Title -->
+
+<!-- Courses Section -->
+<section id="courses" class="courses section">
+   <div class="container">
+      <div class="container mt-5">
+         <div class="row mb-4">
+            <!-- Formulario de Ordenar -->
+            <div class="col-md-6 mb-3">
+               <div class="mb-3 p-4 border rounded shadow-sm bg-light">
+                  <!-- Título del Formulario de Ordenar -->
+                  <h4 class="text-center mb-4">Ordena los proyectos</h4>
+                  <form id="form-ordenar">
+                     <div class="row g-3">
+                        <div class="col-12">
+                           <label for="algorithm" class="col-form-label">Escoga el algoritmo de ordenamiento:</label>
+                           <select id="algorithm" name="algorithm" class="form-select">
+                              <option value="quicksort">QuickSort</option>
+                              <option value="mergesort">MergeSort</option>
+                              <option value="shellsort">ShellSort</option>
+                           </select>
+                        </div>
+                        <div class="col-12">
+                           <label for="type_order" class="col-form-label">Escoga el tipo de ordenación:</label>
+                           <select id="type_order" name="type_order" class="form-select">
+                              <option value="1">Ascendente</option>
+                              <option value="2">Descendente</option>
+                           </select>
+                        </div>
+                        <div class="col-12">
+                           <label for="atributo" class="col-form-label">Escoga el criterio por ordenar:</label>
+                           <select id="atributo" name="atributo" class="form-select">
+                              <option value="nombre">Nombre</option>
+                              <option value="inversion">Inversión</option>
+                              <option value="costototal">Costo Total</option>
+                           </select>
+                        </div>
+                        <div class="col-12">
+                           <button type="submit" class="btn btn-primary">Ordenar</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+      
+            <!-- Formulario de Buscar -->
+            <div class="col-md-6 mb-3">
+               <div class="mb-3 p-4 border rounded shadow-sm bg-light">
+                  <!-- Título del Formulario de Buscar -->
+                  <h4 class="text-center mb-4">Busca un proyecto</h4>
+                  <form id="form-buscar">
+                     <div class="row g-3">
+                        <div class="col-12">
+                           <label for="tipoBusqueda" class="col-form-label">Escoga el tipo de Búsqueda:</label>
+                           <select id="tipoBusqueda" name="tipoBusqueda" class="form-select">
+                              <option value="binario">Binaria</option>
+                              <option value="lineal">Lineal</option>
+                           </select>
+                        </div>
+                        <div class="col-12">
+                           <label for="criterio" class="col-form-label">Escoga el criterio por buscar:</label>
+                           <select id="criterio" name="criterio" class="form-select">
+                              <option value="nombre">Nombre</option>
+                              <option value="inversion">Inversión</option>
+                              <option value="acronimo">Acrónimo</option>
+                           </select>
+                        </div>
+                        <div class="col-12">
+                           <label for="valor" class="col-form-label">Escriba el texto por buscar:</label>
+                           <input type="text" id="valor" name="valor" class="form-control">
+                        </div>
+                        <div class="col-12">
+                           <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
       </div>
-    </nav>
-  </div><!-- End Page Title -->
-  
-  <!-- Courses Section -->
-  <section id="courses" class="courses section">
+      
+      
+      
+      
 
-    <div class="container">
-        <div class="container mt-5">
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre Proyecto</th>
-                        <th>Inversión </th>
-                        <th>Tiempo de vida (años)</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha de Fin</th>
-                        <th>Generación de Energía diaria (MW)</th>
-                        <th>Acrónimo</th>
-                        <th>Costo Total</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in lista %}
-                    <tr>
-                        <td>{{item.idProyecto}}</td>
-                        <td>{{item.nombre}}</td>
-                        <td>{{item.inversion}}</td>
-                        <td>{{item.tiempodevida}}</td>
-                        <td>{{item.fechaInicio}}</td>
-                        <td>{{item.fechaFin}}</td>
-                        <td>{{item.electicidadGeneradapordia}}</td>
-                        <td>{{item.acronimo}}</td>
-                        <td>{{item.costototal}}</td>
-                        <td>
-                            <div class="btn-group">
-                                <div>
-                                    <a type="button" class="btn btn-primary btn-sm me-2" href="/proyecto/editar/{{item.idProyecto}}">Editar</a>
-                                    <a type="button" class="btn btn-danger btn-sm me-2" href="/proyecto/eliminar/{{item.idProyecto}}">Eliminar</a>
-                                </div>
-                                <div class="mt-2">
-                                    <a type="button" class="btn btn-success btn-sm" href="/inversionista/listas/{{item.acronimo}}">Ver Inversionista</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+         <!-- Tabla de proyectos -->
+         <table class="table table-striped table-bordered" id="tabla-proyectos">
+            <thead class="thead-dark">
+               <tr>
+                  <th>#</th>
+                  <th>Nombre Proyecto</th>
+                  <th>Inversión</th>
+                  <th>Tiempo de vida (años)</th>
+                  <th>Fecha de Inicio</th>
+                  <th>Fecha de Fin</th>
+                  <th>Generación de Energía diaria (MW)</th>
+                  <th>Acrónimo</th>
+                  <th>Costo Total</th>
+                  <th>Acciones</th>
+               </tr>
+            </thead>
+            <tbody>
+               {% for item in lista %}
+               <tr>
+                  <td>{{ loop.index }}</td> <!-- Numeración automática -->
+                  <td>{{ item.nombre }}</td>
+                  <td>${{ "{:,.2f}".format(item.inversion) }}</td> <!-- Formato con signo de dinero -->
+                  <td>{{ item.tiempodevida }}</td>
+                  <td>{{ item.fechaInicio }}</td>
+                  <td>{{ item.fechaFin }}</td>
+                  <td>{{ item.electicidadGeneradapordia }}</td>
+                  <td>{{ item.acronimo }}</td>
+                  <td>${{ "{:,.2f}".format(item.costototal) }}</td> <!-- Formato con signo de dinero -->
+                  <td>
+                     <div class="btn-group">
+                        <a class="btn btn-primary btn-sm me-2" href="/proyecto/editar/{{ item.idProyecto }}">
+                           <i class="bi bi-pencil"></i> Editar
+                        </a>
+                        <a class="btn btn-danger btn-sm me-2" href="/proyecto/eliminar/{{ item.idProyecto }}">
+                           <i class="bi bi-trash"></i> Eliminar
+                        </a>
+                        <a class="btn btn-success btn-sm" href="/inversionista/listas/{{ item.acronimo }}">
+                           <i class="bi bi-person"></i> Ver Inversionista
+                        </a>
+                     </div>
+                  </td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      </div>
+   </div>
+</section><!-- /Courses Section -->
 
-  </section><!-- /Courses Section -->
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- Bootstrap Icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+      // Función para manejar actualizaciones de la tabla
+      function actualizarTabla(data) {
+   const tbody = $('#tabla-proyectos tbody');
+   tbody.empty(); // Limpiar tabla
+
+   // Función para dar formato de dinero
+   function formatoMoneda(valor) {
+      return '$' + valor.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+   }
+
+   if (data && Array.isArray(data)) {
+      data.forEach((item, index) => {
+         tbody.append(`
+            <tr>
+               <td>${index + 1}</td>
+               <td>${item.nombre}</td>
+               <td>${formatoMoneda(item.inversion)}</td> <!-- Formato de dinero -->
+               <td>${item.tiempodevida}</td>
+               <td>${item.fechaInicio}</td>
+               <td>${item.fechaFin}</td>
+               <td>${item.electicidadGeneradapordia}</td>
+               <td>${item.acronimo}</td>
+               <td>${formatoMoneda(item.costototal)}</td> <!-- Formato de dinero -->
+               <td>
+                  <div class="btn-group">
+                     <a class="btn btn-primary btn-sm me-2" href="/proyecto/editar/${item.idProyecto}">
+                        <i class="bi bi-pencil"></i> Editar
+                     </a>
+                     <a class="btn btn-danger btn-sm me-2" href="/proyecto/eliminar/${item.idProyecto}">
+                        <i class="bi bi-trash"></i> Eliminar
+                     </a>
+                     <a class="btn btn-success btn-sm" href="/inversionista/listas/${item.acronimo}">
+                        <i class="bi bi-person"></i> Ver Inversionista
+                     </a>
+                  </div>
+               </td>
+            </tr>
+         `);
+      });
+   } else {
+      tbody.append('<tr><td colspan="10" class="text-center">No se encontraron proyectos</td></tr>');
+   }
+}
+
+      // Función para manejar errores
+      function manejarError(xhr) {
+         alert('Ocurrió un error: ' + xhr.responseText);
+      }
+
+      // Enviar solicitudes AJAX (generalizado para ordenar y buscar)
+      function enviarSolicitud(url) {
+         $.ajax({
+            url: url,
+            method: 'GET',
+            success: function (response) {
+               if (response.data) {
+                  if (response.data.header) {
+                     // Manejar lista encadenada para búsquedas
+                     const lista = [];
+                     let current = response.data.header;
+                     while (current) {
+                        lista.push(current.info);
+                        current = current.next;
+                     }
+                     actualizarTabla(lista);
+                  } else {
+                     // Manejar lista directa para ordenamientos
+                     actualizarTabla(response.data);
+                  }
+               } else {
+                  alert('No se encontraron datos');
+               }
+            },
+            error: manejarError
+         });
+      }
+
+      // Manejar el evento de ordenamiento
+      $('#form-ordenar').on('submit', function (e) {
+         e.preventDefault();
+
+         const algorithm = $('#algorithm').val();
+         const type_order = $('#type_order').val();
+         const atributo = $('#atributo').val();
+
+         const url = `/ordenar/${algorithm}/${type_order}/${atributo}`;
+         enviarSolicitud(url);
+      });
+
+      // Manejar el evento de búsqueda
+      $('#form-buscar').on('submit', function (e) {
+         e.preventDefault();
+
+         const tipoBusqueda = $('#tipoBusqueda').val();
+         const criterio = $('#criterio').val();
+         const valor = $('#valor').val();
+
+         const url = `/buscar/${tipoBusqueda}/${criterio}/${valor}`;
+         enviarSolicitud(url);
+      });
+   });
+</script>
+
 {% endblock %}

@@ -14,7 +14,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import controller.Dao.servicies.TransaccionServices;
+import models.Proyecto;
 import controller.Dao.servicies.ProyectoServices;
+import controller.tda.list.LinkedList;
 @Path("/proyecto")
 public class ProyectoApi {
     private TransaccionServices transaccionServices = new TransaccionServices();
@@ -160,37 +162,97 @@ public Response delete(@PathParam("id") Integer id) {
     }
 }
 
+// Método para ordenar los proyectos por un atributo específico y un tipo de orden (ascendente o descendente) 
+// con un algoritmo de ordenamiento específico (quicksort, mergesort o shellsort).
+
+@Path("/ordenar/{algorithm}/{type_order}/{atributo}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response ordenarProyectosUnificado(
+    @PathParam("algorithm") String algorithm,
+    @PathParam("type_order") Integer type_order,
+    @PathParam("atributo") String atributo) {
+
+    HashMap<String, Object> res = new HashMap<>();
+    ProyectoServices ps = new ProyectoServices();
+
+    try {
+        LinkedList<Proyecto> proyectosOrdenados;
+
+        // Validación del algoritmo y ejecución del método correspondiente
+        if ("quicksort".equalsIgnoreCase(algorithm)) {
+            proyectosOrdenados = ps.order(type_order, atributo); // quickSort
+        } else if ("mergesort".equalsIgnoreCase(algorithm)) {
+            proyectosOrdenados = ps.mergeSort(type_order, atributo); // mergeSort
+        } else if ("shellsort".equalsIgnoreCase(algorithm)) {
+            proyectosOrdenados = ps.shellSort(type_order, atributo); // shellSort
+        } else {
+            res.put("msg", "ERROR");
+            res.put("data", "Algoritmo no válido: " + algorithm);
+            return Response.status(Response.Status.BAD_REQUEST).entity(res).build();
+        }
+
+        // Respuesta exitosa
+        res.put("msg", "Proyectos ordenados");
+        res.put("algoritmo", algorithm);
+        res.put("tipo de orden", type_order);
+        res.put("data", proyectosOrdenados.toArray());
+        return Response.ok(res).build();
+
+    } catch (Exception e) {
+        // Manejo de errores
+        res.put("msg", "ERROR");
+        res.put("data", e.getMessage());
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
+    }
+}
+
+@Path("/buscarproyecto/{tipoBusqueda}/{criterio}/{valor}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response buscarProyectoUnificado(
+    @PathParam("tipoBusqueda") String tipoBusqueda,
+    @PathParam("criterio") String criterio, 
+    @PathParam("valor") String valor) {
+    
+    HashMap<String, Object> res = new HashMap<>();
+    ProyectoServices proyectoDao = new ProyectoServices();
+    
+    try {
+        LinkedList<Proyecto> proyectoEncontrado;
+
+        // Realizar la búsqueda basada en el tipo
+        if ("binario".equalsIgnoreCase(tipoBusqueda)) {
+            // Búsqueda binaria
+            proyectoEncontrado = proyectoDao.buscarBinario(criterio, valor);
+        } else if ("lineal".equalsIgnoreCase(tipoBusqueda)) {
+            // Búsqueda lineal
+            proyectoEncontrado = proyectoDao.buscarLineal(criterio, valor);
+        } else {
+            res.put("msg", "ERROR");
+            res.put("data", "Tipo de búsqueda no válido");
+            return Response.status(Response.Status.BAD_REQUEST).entity(res).build();
+        }
+
+        if (proyectoEncontrado != null && !proyectoEncontrado.isEmpty()) {
+            res.put("msg", "Proyecto encontrado");
+            res.put("data", proyectoEncontrado);
+            return Response.ok(res).build();
+        } else {
+            res.put("msg", "Proyecto no encontrado");
+            return Response.status(Response.Status.NOT_FOUND).entity(res).build();
+        }
+    } catch (Exception e) {
+        res.put("msg", "ERROR");
+        res.put("data", e.getMessage());
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
+    }
+}
+
+
+
+
 
 }
    
    
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

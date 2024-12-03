@@ -2,6 +2,8 @@ from flask import Blueprint, abort, request, render_template, redirect
 import json
 import requests
 from flask import flash
+from flask import jsonify
+
 router = Blueprint('router', __name__)
 
 @router.route('/')
@@ -165,4 +167,32 @@ def asociar_inversionista(acronimo):
         flash(str(dat["msg"]), category='error')
         return redirect('/inversionista/listas/'+acronimo)
 
-## Formulario para asociar inversionista a proyecto
+@router.route('/ordenar/<algorithm>/<type_order>/<atributo>')
+def ordenar_proyectos(algorithm, type_order, atributo):
+    # Realizar la solicitud a la API con los parámetros
+    url = 'http://localhost:8099/api/proyecto/ordenar/' + algorithm + "/" + type_order +"/" + atributo 
+    r = requests.get(url)
+
+    # Obtener la respuesta JSON de la API
+    if r.status_code == 200:
+        datao = r.json()
+        return jsonify(datao)  # Devuelve los datos como JSON
+    else:
+        return jsonify({"message": "Error al ordenar los proyectos"}), 400 
+    
+@router.route('/buscar/<tipoBusqueda>/<criterio>/<valor>')
+def buscar_proyectos(tipoBusqueda, criterio, valor):
+    # Realizar la solicitud a la API con los parámetros
+    url = 'http://localhost:8099/api/proyecto/buscarproyecto/' + tipoBusqueda + "/" + criterio +"/" + valor 
+    r = requests.get(url)
+
+    # Obtener la respuesta JSON de la API
+    if r.status_code == 200:
+        datab = r.json()
+        return jsonify(datab)
+    else:
+        return jsonify({"message": "Error al buscar los proyectos"}), 400
+
+
+
+
