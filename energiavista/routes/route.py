@@ -167,10 +167,10 @@ def asociar_inversionista(acronimo):
         flash(str(dat["msg"]), category='error')
         return redirect('/inversionista/listas/'+acronimo)
 
-@router.route('/ordenar/<algorithm>/<type_order>/<atributo>')
-def ordenar_proyectos(algorithm, type_order, atributo):
+@router.route('/ordenar/<algorithm>/<tipoorden>/<criterio>')
+def ordenar_proyectos(algorithm, tipoorden, criterio):
     # Realizar la solicitud a la API con los parámetros
-    url = 'http://localhost:8099/api/proyecto/ordenar/' + algorithm + "/" + type_order +"/" + atributo 
+    url = 'http://localhost:8099/api/proyecto/ordenar/' + algorithm + "/" + tipoorden +"/" + criterio 
     r = requests.get(url)
 
     # Obtener la respuesta JSON de la API

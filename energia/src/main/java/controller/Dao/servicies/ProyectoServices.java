@@ -38,24 +38,24 @@ public class ProyectoServices {
         return obj.delete(id);
     }
 
-    public LinkedList<Proyecto> order(Integer type_order, String atributo) {
-        return obj.order(type_order, atributo);
+    public LinkedList<Proyecto> order(Integer tipoorden, String criterio) {
+        return obj.order(tipoorden, criterio);
     }
     
-    public LinkedList<Proyecto> buscarBinario (String criterio, String atributo) throws ListEmptyException {
-        return obj.buscarBinario(criterio, atributo);
+    public LinkedList<Proyecto> buscarBinario (String criterio, String valor) throws ListEmptyException {
+        return obj.buscarBinario(criterio, valor);
     }
 
-    public LinkedList<Proyecto> buscarLineal (String criterio, String atributo) throws ListEmptyException {
-        return obj.buscarLineal(criterio, atributo);
+    public LinkedList<Proyecto> buscarLineal (String criterio, String valor) throws ListEmptyException {
+        return obj.buscarLineal(criterio, valor);
     }
 
-    public LinkedList<Proyecto> mergeSort(Integer type_order, String atributo) {
-        return obj.mergeSort(type_order, atributo);
+    public LinkedList<Proyecto> mergeSort(Integer tipoorden, String criterio) {
+        return obj.mergeSort(tipoorden, criterio);
     }
 
-    public LinkedList<Proyecto> shellSort(Integer type_order, String atributo) {
-        return obj.shellSort(type_order, atributo);
+    public LinkedList<Proyecto> shellSort(Integer tipoorden, String criterio) {
+        return obj.shellSort(tipoorden, criterio);
     }
     
 

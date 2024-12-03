@@ -1,1 +1,167 @@
-[{"idProyecto":1,"nombre":"Hidroelectrica","inversion":500000.0,"tiempodevida":70,"fechaInicio":"2024-10-03","fechaFin":"2026-03-20","electicidadGeneradapordia":90.0,"acronimo":"HE-Costa","costototal":900000.0},{"idProyecto":2,"nombre":"Parque eólico Loja","inversion":5000000.0,"tiempodevida":150,"fechaInicio":"2024-10-31","fechaFin":"2026-11-25","electicidadGeneradapordia":60.0,"acronimo":"PE-Loja","costototal":8000000.0},{"idProyecto":3,"nombre":"Paneles Solares Catamayo","inversion":1.0E7,"tiempodevida":60,"fechaInicio":"2024-11-03","fechaFin":"2025-11-23","electicidadGeneradapordia":40.0,"acronimo":"Ps-C","costototal":2.0E7},{"idProyecto":4,"nombre":"Planta Nuclear","inversion":7.0E7,"tiempodevida":100,"fechaInicio":"2024-11-03","fechaFin":"2026-11-12","electicidadGeneradapordia":60.0,"acronimo":"PN-R","costototal":8.0E7},{"idProyecto":5,"nombre":"Proyecto Eólico","inversion":75000.0,"tiempodevida":30,"fechaInicio":"2024-03-15","fechaFin":"2054-03-15","electicidadGeneradapordia":150.75,"acronimo":"PE","costototal":120000.0},{"idProyecto":6,"nombre":"Centrales Termicas","inversion":4.0E7,"tiempodevida":30,"fechaInicio":"2024-04-15","fechaFin":"2053-03-12","electicidadGeneradapordia":150.0,"acronimo":"CTE","costototal":1.2E8},{"idProyecto":7,"nombre":"Parque Solar Loja","inversion":2000000.0,"tiempodevida":80,"fechaInicio":"2025-02-25","fechaFin":"2055-01-23","electicidadGeneradapordia":120.0,"acronimo":"PSL-1","costototal":3000000.0},{"idProyecto":8,"nombre":"Hidroelectrica Santiago","inversion":2500000.0,"tiempodevida":60,"fechaInicio":"2024-06-04","fechaFin":"2029-06-04","electicidadGeneradapordia":75.0,"acronimo":"HE-Santiago","costototal":4000000.0},{"idProyecto":9,"nombre":"Parque Solar Guayaquil","inversion":3000000.0,"tiempodevida":100,"fechaInicio":"2024-05-05","fechaFin":"2028-01-31","electicidadGeneradapordia":100.0,"acronimo":"PSG-2","costototal":5000000.0},{"idProyecto":10,"nombre":"Centrales Hidroelectricas","inversion":5.0E7,"tiempodevida":150,"fechaInicio":"2024-06-22","fechaFin":"2070-05-22","electicidadGeneradapordia":120.0,"acronimo":"CH-2","costototal":1.0E8},{"idProyecto":11,"nombre":"Planta Eólica Isabela","inversion":9000000.0,"tiempodevida":50,"fechaInicio":"2025-03-11","fechaFin":"2075-05-11","electicidadGeneradapordia":200.0,"acronimo":"PEI","costototal":1.3E7},{"idProyecto":12,"nombre":"Parque Termico El Oro","inversion":2.5E7,"tiempodevida":90,"fechaInicio":"2024-03-02","fechaFin":"2064-02-01","electicidadGeneradapordia":87.0,"acronimo":"PTEO","costototal":3.5E7},{"idProyecto":13,"nombre":"Hidroeléctrica Amazonas","inversion":3.0E7,"tiempodevida":120,"fechaInicio":"2024-02-01","fechaFin":"2045-02-04","electicidadGeneradapordia":250.0,"acronimo":"HA","costototal":4.5E8},{"idProyecto":14,"nombre":"Planta Nuclear Orellana","inversion":1.2E8,"tiempodevida":60,"fechaInicio":"2025-02-05","fechaFin":"2085-02-04","electicidadGeneradapordia":90.0,"acronimo":"PNO","costototal":2.0E9},{"idProyecto":15,"nombre":"Hidroelectrica Pastaza","inversion":2.0E8,"tiempodevida":60,"fechaInicio":"2024-03-08","fechaFin":"2056-02-09","electicidadGeneradapordia":70.0,"acronimo":"HP","costototal":4.0E8}]
+[
+    {
+        "idProyecto": 1,
+        "nombre": "Hidroelectrica",
+        "inversion": 500000.0,
+        "tiempodevida": 70,
+        "fechaInicio": "2024-10-03",
+        "fechaFin": "2026-03-20",
+        "electicidadGeneradapordia": 90.0,
+        "acronimo": "HE-Costa",
+        "costototal": 900000.0
+    },
+    {
+        "idProyecto": 2,
+        "nombre": "Parque eólico Loja",
+        "inversion": 5000000.0,
+        "tiempodevida": 150,
+        "fechaInicio": "2024-10-31",
+        "fechaFin": "2026-11-25",
+        "electicidadGeneradapordia": 60.0,
+        "acronimo": "PE-Loja",
+        "costototal": 8000000.0
+    },
+    {
+        "idProyecto": 3,
+        "nombre": "Paneles Solares Catamayo",
+        "inversion": 1.0E7,
+        "tiempodevida": 60,
+        "fechaInicio": "2024-11-03",
+        "fechaFin": "2025-11-23",
+        "electicidadGeneradapordia": 40.0,
+        "acronimo": "Ps-C",
+        "costototal": 2.0E7
+    },
+    {
+        "idProyecto": 4,
+        "nombre": "Planta Nuclear",
+        "inversion": 7.0E7,
+        "tiempodevida": 100,
+        "fechaInicio": "2024-11-03",
+        "fechaFin": "2026-11-12",
+        "electicidadGeneradapordia": 60.0,
+        "acronimo": "PN-R",
+        "costototal": 8.0E7
+    },
+    {
+        "idProyecto": 5,
+        "nombre": "Proyecto Eólico",
+        "inversion": 75000.0,
+        "tiempodevida": 30,
+        "fechaInicio": "2024-03-15",
+        "fechaFin": "2054-03-15",
+        "electicidadGeneradapordia": 150.75,
+        "acronimo": "PE",
+        "costototal": 120000.0
+    },
+    {
+        "idProyecto": 6,
+        "nombre": "Centrales Termicas",
+        "inversion": 4.0E7,
+        "tiempodevida": 30,
+        "fechaInicio": "2024-04-15",
+        "fechaFin": "2053-03-12",
+        "electicidadGeneradapordia": 150.0,
+        "acronimo": "CTE",
+        "costototal": 1.2E8
+    },
+    {
+        "idProyecto": 7,
+        "nombre": "Parque Solar Loja",
+        "inversion": 2000000.0,
+        "tiempodevida": 80,
+        "fechaInicio": "2025-02-25",
+        "fechaFin": "2055-01-23",
+        "electicidadGeneradapordia": 120.0,
+        "acronimo": "PSL-1",
+        "costototal": 3000000.0
+    },
+    {
+        "idProyecto": 8,
+        "nombre": "Hidroelectrica Santiago",
+        "inversion": 2500000.0,
+        "tiempodevida": 60,
+        "fechaInicio": "2024-06-04",
+        "fechaFin": "2029-06-04",
+        "electicidadGeneradapordia": 75.0,
+        "acronimo": "HE-Santiago",
+        "costototal": 4000000.0
+    },
+    {
+        "idProyecto": 9,
+        "nombre": "Parque Solar Guayaquil",
+        "inversion": 3000000.0,
+        "tiempodevida": 100,
+        "fechaInicio": "2024-05-05",
+        "fechaFin": "2028-01-31",
+        "electicidadGeneradapordia": 100.0,
+        "acronimo": "PSG-2",
+        "costototal": 5000000.0
+    },
+    {
+        "idProyecto": 10,
+        "nombre": "Centrales Hidroelectricas",
+        "inversion": 5.0E7,
+        "tiempodevida": 150,
+        "fechaInicio": "2024-06-22",
+        "fechaFin": "2070-05-22",
+        "electicidadGeneradapordia": 120.0,
+        "acronimo": "CH-2",
+        "costototal": 1.0E8
+    },
+    {
+        "idProyecto": 11,
+        "nombre": "Planta Eólica Isabela",
+        "inversion": 9000000.0,
+        "tiempodevida": 50,
+        "fechaInicio": "2025-03-11",
+        "fechaFin": "2075-05-11",
+        "electicidadGeneradapordia": 200.0,
+        "acronimo": "PEI",
+        "costototal": 1.3E7
+    },
+    {
+        "idProyecto": 12,
+        "nombre": "Parque Termico El Oro",
+        "inversion": 2.5E7,
+        "tiempodevida": 90,
+        "fechaInicio": "2024-03-02",
+        "fechaFin": "2064-02-01",
+        "electicidadGeneradapordia": 87.0,
+        "acronimo": "PTEO",
+        "costototal": 3.5E7
+    },
+    {
+        "idProyecto": 7,
+        "nombre": "Parque Solar Loja",
+        "inversion": 2000000.0,
+        "tiempodevida": 80,
+        "fechaInicio": "2025-02-25",
+        "fechaFin": "2055-01-23",
+        "electicidadGeneradapordia": 50.0,
+        "acronimo": "PSL-1",
+        "costototal": 3000000.0
+    },
+    {
+        "idProyecto": 14,
+        "nombre": "Planta Nuclear Orellana",
+        "inversion": 1.2E8,
+        "tiempodevida": 60,
+        "fechaInicio": "2025-02-05",
+        "fechaFin": "2085-02-04",
+        "electicidadGeneradapordia": 90.0,
+        "acronimo": "PNO",
+        "costototal": 2.0E9
+    },
+    {
+        "idProyecto": 15,
+        "nombre": "Hidroelectrica Pastaza",
+        "inversion": 2.0E8,
+        "tiempodevida": 60,
+        "fechaInicio": "2024-03-08",
+        "fechaFin": "2056-02-09",
+        "electicidadGeneradapordia": 70.0,
+        "acronimo": "HP",
+        "costototal": 4.0E8
+    }
+]

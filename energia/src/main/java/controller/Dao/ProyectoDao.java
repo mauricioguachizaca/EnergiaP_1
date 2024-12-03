@@ -58,31 +58,31 @@ public class ProyectoDao extends AdapterDao<Proyecto> {
     }
     //Metodos de ordenamientos
 
-    // Método de ordenamiento con Quicksort para tres atributos
-    public LinkedList<Proyecto> order(Integer type_order, String atributo) {
+    // Método de ordenamiento con Quicksort para tres criterios
+    public LinkedList<Proyecto> order(Integer tipoorden, String criterio) {
         LinkedList<Proyecto> listita = getListAll();
         if (!listita.isEmpty()) {
             Proyecto[] lista = (Proyecto[]) listita.toArray();
             listita.reset();
-            quickSort(lista, 0, lista.length - 1, type_order, atributo); // Llama al método de Quicksort
+            quickSort(lista, 0, lista.length - 1, tipoorden, criterio); // Llama al método de Quicksort
             listita.toList(lista);
         }
         return listita;
     }
 
-    private void quickSort(Proyecto[] arr, int low, int high, Integer type_order, String atributo) {
+    private void quickSort(Proyecto[] arr, int low, int high, Integer tipoorden, String criterio) {
         if (low < high) {
-            int pi = partition(arr, low, high, type_order, atributo);
-            quickSort(arr, low, pi - 1, type_order, atributo);  // Lado izquierdo
-            quickSort(arr, pi + 1, high, type_order, atributo); // Lado derecho
+            int pi = partition(arr, low, high, tipoorden, criterio);
+            quickSort(arr, low, pi - 1, tipoorden, criterio);  // Lado izquierdo
+            quickSort(arr, pi + 1, high, tipoorden, criterio); // Lado derecho
         }
     }
 
-    private int partition(Proyecto[] arr, int low, int high, Integer type_order, String atributo) {
+    private int partition(Proyecto[] arr, int low, int high, Integer tipoorden, String criterio) {
         Proyecto pivot = arr[high]; // Último elemento como pivote
         int i = low - 1;           // Índice del menor elemento
         for (int j = low; j < high; j++) {
-            if (!verify(arr[j], pivot, type_order, atributo)) {
+            if (!verify(arr[j], pivot, tipoorden, criterio)) {
                 i++;
                 swap(arr, i, j);
             }
@@ -97,42 +97,42 @@ public class ProyectoDao extends AdapterDao<Proyecto> {
         arr[j] = temp;
     }
 
-    private Boolean verify(Proyecto a, Proyecto b, Integer type_order, String atributo) {
-        if (type_order == 1) { // Ascendente
-            if (atributo.equalsIgnoreCase("nombre")) {
+    private Boolean verify(Proyecto a, Proyecto b, Integer tipoorden, String criterio) {
+        if (tipoorden == 1) { // Ascendente
+            if (criterio.equalsIgnoreCase("nombre")) {
                 return a.getNombre().compareTo(b.getNombre()) > 0;
-            } else if (atributo.equalsIgnoreCase("inversion")) {
+            } else if (criterio.equalsIgnoreCase("inversion")) {
                 return a.getInversion().compareTo(b.getInversion()) > 0;
-            } else if (atributo.equalsIgnoreCase("costototal")) {
+            } else if (criterio.equalsIgnoreCase("costototal")) {
                 return a.getCostototal().compareTo(b.getCostototal()) > 0;
             }
         } else { // Descendente
-            if (atributo.equalsIgnoreCase("nombre")) {
+            if (criterio.equalsIgnoreCase("nombre")) {
                 return a.getNombre().compareTo(b.getNombre()) < 0;
-            } else if (atributo.equalsIgnoreCase("inversion")) {
+            } else if (criterio.equalsIgnoreCase("inversion")) {
                 return a.getInversion().compareTo(b.getInversion()) < 0;
-            } else if (atributo.equalsIgnoreCase("costototal")) {
+            } else if (criterio.equalsIgnoreCase("costototal")) {
                 return a.getCostototal().compareTo(b.getCostototal()) < 0;
             }
         }
         return false;
     }    
 
-    private Boolean verify2(Proyecto a, Proyecto b, Integer type_order, String atributo) {
-        if (type_order == 1) { // Ascendente
-            if (atributo.equalsIgnoreCase("nombre")) {
+    private Boolean verify2(Proyecto a, Proyecto b, Integer tipoorden, String criterio) {
+        if (tipoorden == 1) { // Ascendente
+            if (criterio.equalsIgnoreCase("nombre")) {
                 return a.getNombre().compareTo(b.getNombre()) < 0;  // Orden ascendente
-            } else if (atributo.equalsIgnoreCase("inversion")) {
+            } else if (criterio.equalsIgnoreCase("inversion")) {
                 return a.getInversion().compareTo(b.getInversion()) < 0;  // Orden ascendente
-            } else if (atributo.equalsIgnoreCase("costototal")) {
+            } else if (criterio.equalsIgnoreCase("costototal")) {
                 return a.getCostototal().compareTo(b.getCostototal()) < 0;  // Orden ascendente
             }
         } else { // Descendente
-            if (atributo.equalsIgnoreCase("nombre")) {
+            if (criterio.equalsIgnoreCase("nombre")) {
                 return a.getNombre().compareTo(b.getNombre()) > 0;  // Orden descendente
-            } else if (atributo.equalsIgnoreCase("inversion")) {
+            } else if (criterio.equalsIgnoreCase("inversion")) {
                 return a.getInversion().compareTo(b.getInversion()) > 0;  // Orden descendente
-            } else if (atributo.equalsIgnoreCase("costototal")) {
+            } else if (criterio.equalsIgnoreCase("costototal")) {
                 return a.getCostototal().compareTo(b.getCostototal()) > 0;  // Orden descendente
             }
         }
@@ -141,34 +141,34 @@ public class ProyectoDao extends AdapterDao<Proyecto> {
     
 
 
-    // Método de ordenamiento con MergeSort para tres atributos
-public LinkedList<Proyecto> mergeSort(Integer type_order, String atributo) {
+    // Método de ordenamiento con MergeSort para tres criterios
+public LinkedList<Proyecto> mergeSort(Integer tipoorden, String criterio) {
     LinkedList<Proyecto> listita = getListAll();
     if (!listita.isEmpty()) {
         Proyecto[] lista = (Proyecto[]) listita.toArray();
         listita.reset();
-        mergeSortRec(lista, 0, lista.length - 1, type_order, atributo); // Llama al método de MergeSort
+        mergeSortRec(lista, 0, lista.length - 1, tipoorden, criterio); // Llama al método de MergeSort
         listita.toList(lista); // Convierte el arreglo ordenado nuevamente a la lista
     }
     return listita;
 }
 
 // Método recursivo de MergeSort
-private void mergeSortRec(Proyecto[] arr, int left, int right, Integer type_order, String atributo) {
+private void mergeSortRec(Proyecto[] arr, int left, int right, Integer tipoorden, String criterio) {
     if (left < right) {
         int mid = (left + right) / 2;
 
         // Ordena las dos mitades
-        mergeSortRec(arr, left, mid, type_order, atributo);
-        mergeSortRec(arr, mid + 1, right, type_order, atributo);
+        mergeSortRec(arr, left, mid, tipoorden, criterio);
+        mergeSortRec(arr, mid + 1, right, tipoorden, criterio);
 
         // Fusiona las dos mitades ordenadas
-        merge(arr, left, mid, right, type_order, atributo);
+        merge(arr, left, mid, right, tipoorden, criterio);
     }
 }
 
 // Método de fusión de dos subarreglos
-private void merge(Proyecto[] arr, int left, int mid, int right, Integer type_order, String atributo) {
+private void merge(Proyecto[] arr, int left, int mid, int right, Integer tipoorden, String criterio) {
     // Tamaño de los subarreglos
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -185,7 +185,7 @@ private void merge(Proyecto[] arr, int left, int mid, int right, Integer type_or
     int i = 0, j = 0;
     int k = left;
     while (i < n1 && j < n2) {
-        if (verify2(leftArr[i], rightArr[j], type_order, atributo)) {
+        if (verify2(leftArr[i], rightArr[j], tipoorden, criterio)) {
             arr[k] = leftArr[i];
             i++;
         } else {
@@ -212,19 +212,19 @@ private void merge(Proyecto[] arr, int left, int mid, int right, Integer type_or
 
 //shell sort
 // Método de ordenamiento con ShellSort
-public LinkedList<Proyecto> shellSort(Integer type_order, String atributo) {
+public LinkedList<Proyecto> shellSort(Integer tipoorden, String criterio) {
     LinkedList<Proyecto> listita = getListAll();
     if (!listita.isEmpty()) {
         Proyecto[] lista = (Proyecto[]) listita.toArray();
         listita.reset();
-        shellSortLogic(lista, type_order, atributo); // Llama al método de ShellSort
+        shellSortLogic(lista, tipoorden, criterio); // Llama al método de ShellSort
         listita.toList(lista); // Convierte el arreglo ordenado nuevamente a la lista
     }
     return listita;
 }
 
 // Lógica del ShellSort
-private void shellSortLogic(Proyecto[] arr, Integer type_order, String atributo) {
+private void shellSortLogic(Proyecto[] arr, Integer tipoorden, String criterio) {
     int n = arr.length;
     // Comienza con un gap inicial grande y lo reduce a la mitad en cada iteración
     for (int gap = n / 2; gap > 0; gap /= 2) {
@@ -234,7 +234,7 @@ private void shellSortLogic(Proyecto[] arr, Integer type_order, String atributo)
             int j = i;
 
             // Comparación y desplazamiento de elementos según el gap
-            while (j >= gap && verify(arr[j - gap], temp, type_order, atributo)) {
+            while (j >= gap && verify(arr[j - gap], temp, tipoorden, criterio)) {
                 arr[j] = arr[j - gap];
                 j -= gap;
             }

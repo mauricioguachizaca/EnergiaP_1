@@ -162,16 +162,16 @@ public Response delete(@PathParam("id") Integer id) {
     }
 }
 
-// Método para ordenar los proyectos por un atributo específico y un tipo de orden (ascendente o descendente) 
+// Método para ordenar los proyectos por un criterio específico y un tipo de orden (ascendente o descendente) 
 // con un algoritmo de ordenamiento específico (quicksort, mergesort o shellsort).
 
-@Path("/ordenar/{algorithm}/{type_order}/{atributo}")
+@Path("/ordenar/{algorithm}/{tipoorden}/{criterio}")
 @GET
 @Produces(MediaType.APPLICATION_JSON)
 public Response ordenarProyectosUnificado(
     @PathParam("algorithm") String algorithm,
-    @PathParam("type_order") Integer type_order,
-    @PathParam("atributo") String atributo) {
+    @PathParam("tipoorden") Integer tipoorden,
+    @PathParam("criterio") String criterio) {
 
     HashMap<String, Object> res = new HashMap<>();
     ProyectoServices ps = new ProyectoServices();
@@ -181,11 +181,11 @@ public Response ordenarProyectosUnificado(
 
         // Validación del algoritmo y ejecución del método correspondiente
         if ("quicksort".equalsIgnoreCase(algorithm)) {
-            proyectosOrdenados = ps.order(type_order, atributo); // quickSort
+            proyectosOrdenados = ps.order(tipoorden, criterio); // quickSort
         } else if ("mergesort".equalsIgnoreCase(algorithm)) {
-            proyectosOrdenados = ps.mergeSort(type_order, atributo); // mergeSort
+            proyectosOrdenados = ps.mergeSort(tipoorden, criterio); // mergeSort
         } else if ("shellsort".equalsIgnoreCase(algorithm)) {
-            proyectosOrdenados = ps.shellSort(type_order, atributo); // shellSort
+            proyectosOrdenados = ps.shellSort(tipoorden, criterio); // shellSort
         } else {
             res.put("msg", "ERROR");
             res.put("data", "Algoritmo no válido: " + algorithm);
@@ -195,7 +195,7 @@ public Response ordenarProyectosUnificado(
         // Respuesta exitosa
         res.put("msg", "Proyectos ordenados");
         res.put("algoritmo", algorithm);
-        res.put("tipo de orden", type_order);
+        res.put("tipo de orden", tipoorden);
         res.put("data", proyectosOrdenados.toArray());
         return Response.ok(res).build();
 
