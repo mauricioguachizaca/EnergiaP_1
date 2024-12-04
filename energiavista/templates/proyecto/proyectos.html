@@ -23,10 +23,8 @@
    <div class="container">
       <div class="container mt-5">
          <div class="row mb-4">
-            <!-- Formulario de Ordenar -->
             <div class="col-md-6 mb-3">
                <div class="mb-3 p-4 border rounded shadow-sm bg-light">
-                  <!-- Título del Formulario de Ordenar -->
                   <h4 class="text-center mb-4">Ordena los proyectos</h4>
                   <form id="form-ordenar">
                      <div class="row g-3">
@@ -61,10 +59,8 @@
                </div>
             </div>
       
-            <!-- Formulario de Buscar -->
             <div class="col-md-6 mb-3">
                <div class="mb-3 p-4 border rounded shadow-sm bg-light">
-                  <!-- Título del Formulario de Buscar -->
                   <h4 class="text-center mb-4">Busca un proyecto</h4>
                   <form id="form-buscar">
                      <div class="row g-3">
@@ -120,15 +116,15 @@
             <tbody>
                {% for item in lista %}
                <tr>
-                  <td>{{ loop.index }}</td> <!-- Numeración automática -->
+                  <td>{{ loop.index }}</td> 
                   <td>{{ item.nombre }}</td>
-                  <td>${{ "{:,.2f}".format(item.inversion) }}</td> <!-- Formato con signo de dinero -->
+                  <td>${{ "{:,.2f}".format(item.inversion) }}</td> 
                   <td>{{ item.tiempodevida }}</td>
                   <td>{{ item.fechaInicio }}</td>
                   <td>{{ item.fechaFin }}</td>
                   <td>{{ item.electicidadGeneradapordia }}</td>
                   <td>{{ item.acronimo }}</td>
-                  <td>${{ "{:,.2f}".format(item.costototal) }}</td> <!-- Formato con signo de dinero -->
+                  <td>${{ "{:,.2f}".format(item.costototal) }}</td> 
                   <td>
                      <div class="btn-group">
                         <a class="btn btn-primary btn-sm me-2" href="/proyecto/editar/{{ item.idProyecto }}">
@@ -157,12 +153,10 @@
 
 <script>
    $(document).ready(function () {
-      // Función para manejar actualizaciones de la tabla
       function actualizarTabla(data) {
    const tbody = $('#tabla-proyectos tbody');
-   tbody.empty(); // Limpiar tabla
+   tbody.empty(); 
 
-   // Función para dar formato de dinero
    function formatoMoneda(valor) {
       return '$' + valor.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
    }
@@ -201,12 +195,10 @@
    }
 }
 
-      // Función para manejar errores
       function manejarError(xhr) {
          alert('Ocurrió un error: ' + xhr.responseText);
       }
 
-      // Enviar solicitudes AJAX (generalizado para ordenar y buscar)
       function enviarSolicitud(url) {
          $.ajax({
             url: url,
@@ -214,7 +206,6 @@
             success: function (response) {
                if (response.data) {
                   if (response.data.header) {
-                     // Manejar lista encadenada para búsquedas
                      const lista = [];
                      let current = response.data.header;
                      while (current) {
@@ -223,7 +214,6 @@
                      }
                      actualizarTabla(lista);
                   } else {
-                     // Manejar lista directa para ordenamientos
                      actualizarTabla(response.data);
                   }
                } else {
@@ -234,7 +224,6 @@
          });
       }
 
-      // Manejar el evento de ordenamiento
       $('#form-ordenar').on('submit', function (e) {
          e.preventDefault();
 
@@ -246,7 +235,6 @@
          enviarSolicitud(url);
       });
 
-      // Manejar el evento de búsqueda
       $('#form-buscar').on('submit', function (e) {
          e.preventDefault();
 

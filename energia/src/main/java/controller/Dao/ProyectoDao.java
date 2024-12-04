@@ -64,7 +64,7 @@ public class ProyectoDao extends AdapterDao<Proyecto> {
         if (!listita.isEmpty()) {
             Proyecto[] lista = (Proyecto[]) listita.toArray();
             listita.reset();
-            quickSort(lista, 0, lista.length - 1, tipoorden, criterio); // Llama al método de Quicksort
+            quickSort(lista, 0, lista.length - 1, tipoorden, criterio); 
             listita.toList(lista);
         }
         return listita;
@@ -147,41 +147,33 @@ public LinkedList<Proyecto> mergeSort(Integer tipoorden, String criterio) {
     if (!listita.isEmpty()) {
         Proyecto[] lista = (Proyecto[]) listita.toArray();
         listita.reset();
-        mergeSortRec(lista, 0, lista.length - 1, tipoorden, criterio); // Llama al método de MergeSort
-        listita.toList(lista); // Convierte el arreglo ordenado nuevamente a la lista
+        mergeSortRec(lista, 0, lista.length - 1, tipoorden, criterio); 
+        listita.toList(lista);
     }
     return listita;
 }
 
-// Método recursivo de MergeSort
 private void mergeSortRec(Proyecto[] arr, int left, int right, Integer tipoorden, String criterio) {
     if (left < right) {
         int mid = (left + right) / 2;
 
-        // Ordena las dos mitades
         mergeSortRec(arr, left, mid, tipoorden, criterio);
         mergeSortRec(arr, mid + 1, right, tipoorden, criterio);
 
-        // Fusiona las dos mitades ordenadas
         merge(arr, left, mid, right, tipoorden, criterio);
     }
 }
 
-// Método de fusión de dos subarreglos
 private void merge(Proyecto[] arr, int left, int mid, int right, Integer tipoorden, String criterio) {
-    // Tamaño de los subarreglos
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    // Crear subarreglos temporales
     Proyecto[] leftArr = new Proyecto[n1];
     Proyecto[] rightArr = new Proyecto[n2];
 
-    // Copiar los datos a los subarreglos temporales
     System.arraycopy(arr, left, leftArr, 0, n1);
     System.arraycopy(arr, mid + 1, rightArr, 0, n2);
 
-    // Fusionar los subarreglos
     int i = 0, j = 0;
     int k = left;
     while (i < n1 && j < n2) {
@@ -195,14 +187,12 @@ private void merge(Proyecto[] arr, int left, int mid, int right, Integer tipoord
         k++;
     }
 
-    // Copiar los elementos restantes de leftArr, si los hay
     while (i < n1) {
         arr[k] = leftArr[i];
         i++;
         k++;
     }
 
-    // Copiar los elementos restantes de rightArr, si los hay
     while (j < n2) {
         arr[k] = rightArr[j];
         j++;
@@ -210,15 +200,14 @@ private void merge(Proyecto[] arr, int left, int mid, int right, Integer tipoord
     }
 }
 
-//shell sort
 // Método de ordenamiento con ShellSort
 public LinkedList<Proyecto> shellSort(Integer tipoorden, String criterio) {
     LinkedList<Proyecto> listita = getListAll();
     if (!listita.isEmpty()) {
         Proyecto[] lista = (Proyecto[]) listita.toArray();
         listita.reset();
-        shellSortLogic(lista, tipoorden, criterio); // Llama al método de ShellSort
-        listita.toList(lista); // Convierte el arreglo ordenado nuevamente a la lista
+        shellSortLogic(lista, tipoorden, criterio);
+        listita.toList(lista);
     }
     return listita;
 }
@@ -226,14 +215,11 @@ public LinkedList<Proyecto> shellSort(Integer tipoorden, String criterio) {
 // Lógica del ShellSort
 private void shellSortLogic(Proyecto[] arr, Integer tipoorden, String criterio) {
     int n = arr.length;
-    // Comienza con un gap inicial grande y lo reduce a la mitad en cada iteración
     for (int gap = n / 2; gap > 0; gap /= 2) {
-        // Aplica la lógica de inserción para cada gap
         for (int i = gap; i < n; i++) {
             Proyecto temp = arr[i];
             int j = i;
 
-            // Comparación y desplazamiento de elementos según el gap
             while (j >= gap && verify(arr[j - gap], temp, tipoorden, criterio)) {
                 arr[j] = arr[j - gap];
                 j -= gap;
@@ -245,16 +231,14 @@ private void shellSortLogic(Proyecto[] arr, Integer tipoorden, String criterio) 
 
 public LinkedList<Proyecto> buscarBinario(String criterio, String valor) throws ListEmptyException {
     LinkedList<Proyecto> lista = new LinkedList<>();
-    LinkedList<Proyecto> listita = getListAll(); // Obtener todos los proyectos
+    LinkedList<Proyecto> listita = getListAll(); 
 
     if (listita == null || listita.isEmpty()) {
         throw new ListEmptyException("Error: La lista está vacía.");
     }
 
-    // Convertir la lista enlazada a un arreglo
     Proyecto[] proyectos = listita.toArray();
 
-    // Ordenar manualmente según el criterio usando Burbuja
     for (int i = 0; i < proyectos.length - 1; i++) {
         for (int j = 0; j < proyectos.length - i - 1; j++) {
             boolean swap = false;
@@ -274,7 +258,6 @@ public LinkedList<Proyecto> buscarBinario(String criterio, String valor) throws 
                 throw new IllegalArgumentException("Criterio de búsqueda no válido: " + criterio);
             }
 
-            // Intercambiar si es necesario
             if (swap) {
                 Proyecto temp = proyectos[j];
                 proyectos[j] = proyectos[j + 1];
@@ -283,7 +266,6 @@ public LinkedList<Proyecto> buscarBinario(String criterio, String valor) throws 
         }
     }
 
-    // Implementación de búsqueda binaria
     int low = 0, high = proyectos.length - 1;
 
     while (low <= high) {
@@ -291,7 +273,6 @@ public LinkedList<Proyecto> buscarBinario(String criterio, String valor) throws 
         Proyecto midProyecto = proyectos[mid];
         boolean match = false;
 
-        // Comparar según el criterio
         if (criterio.equalsIgnoreCase("nombre")) {
             match = midProyecto.getNombre().toLowerCase().startsWith(valor.toLowerCase());
         } else if (criterio.equalsIgnoreCase("inversion")) {
@@ -308,11 +289,9 @@ public LinkedList<Proyecto> buscarBinario(String criterio, String valor) throws 
             throw new IllegalArgumentException("Criterio de búsqueda no válido: " + criterio);
         }
 
-        // Si coincide, agregarlo a la lista
         if (match) {
             lista.add(midProyecto);
 
-            // Buscar hacia la izquierda
             int left = mid - 1;
             while (left >= 0) {
                 Proyecto leftProyecto = proyectos[left];
@@ -332,7 +311,6 @@ public LinkedList<Proyecto> buscarBinario(String criterio, String valor) throws 
                 left--;
             }
 
-            // Buscar hacia la derecha
             int right = mid + 1;
             while (right < proyectos.length) {
                 Proyecto rightProyecto = proyectos[right];
@@ -352,10 +330,9 @@ public LinkedList<Proyecto> buscarBinario(String criterio, String valor) throws 
                 right++;
             }
 
-            break; // Detener la búsqueda después de encontrar el primer proyecto coincidente
+            break; 
         }
 
-        // Ajustar los límites
         if (criterio.equalsIgnoreCase("nombre")) {
             if (midProyecto.getNombre().compareToIgnoreCase(valor) < 0) {
                 low = mid + 1;
@@ -382,30 +359,26 @@ public LinkedList<Proyecto> buscarBinario(String criterio, String valor) throws 
         }
     }
 
-    return lista; // Retornar la lista con los proyectos encontrados
+    return lista; 
+    
 }
 
 
 
 
 
-// Implementación búsqueda lineal
 public LinkedList<Proyecto> buscarLineal(String criterio, String valor) throws ListEmptyException {
     LinkedList<Proyecto> lista = new LinkedList<>();
-    LinkedList<Proyecto> listita = getListAll(); // Obtener todos los proyectos
-
+    LinkedList<Proyecto> listita = getListAll(); 
     if (listita == null || listita.isEmpty()) {
         throw new ListEmptyException("Error: La lista está vacía.");
     }
 
-    // Convertir la lista a un arreglo
     Proyecto[] proyectos = listita.toArray();
 
-    // Buscar linealmente en el arreglo según el criterio
     for (Proyecto proyecto : proyectos) {
         boolean match = false;
 
-        // Comparar según el criterio
         if (criterio.equalsIgnoreCase("nombre")) {
             match = proyecto.getNombre().toLowerCase().startsWith(valor.toLowerCase());
         } else if (criterio.equalsIgnoreCase("inversion")) {
@@ -422,13 +395,12 @@ public LinkedList<Proyecto> buscarLineal(String criterio, String valor) throws L
             throw new IllegalArgumentException("Criterio de búsqueda no válido: " + criterio);
         }
 
-        // Si coincide, agregarlo a la lista
         if (match) {
             lista.add(proyecto);
         }
     }
 
-    return lista; // Retorna los proyectos encontrados en la lista enlazada
+    return lista; 
 }
 
 

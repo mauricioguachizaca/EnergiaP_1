@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 
 import controller.Dao.servicies.ProyectoServices;
 
-@Path("/inversion")
+@Path("/medicion")
 public class MyResource {
 
     private static final Logger logger = Logger.getLogger(MyResource.class.getName());

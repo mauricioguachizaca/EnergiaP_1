@@ -179,20 +179,18 @@ public Response ordenarProyectosUnificado(
     try {
         LinkedList<Proyecto> proyectosOrdenados;
 
-        // Validación del algoritmo y ejecución del método correspondiente
         if ("quicksort".equalsIgnoreCase(algorithm)) {
-            proyectosOrdenados = ps.order(tipoorden, criterio); // quickSort
+            proyectosOrdenados = ps.order(tipoorden, criterio);
         } else if ("mergesort".equalsIgnoreCase(algorithm)) {
-            proyectosOrdenados = ps.mergeSort(tipoorden, criterio); // mergeSort
+            proyectosOrdenados = ps.mergeSort(tipoorden, criterio); 
         } else if ("shellsort".equalsIgnoreCase(algorithm)) {
-            proyectosOrdenados = ps.shellSort(tipoorden, criterio); // shellSort
+            proyectosOrdenados = ps.shellSort(tipoorden, criterio); 
         } else {
             res.put("msg", "ERROR");
             res.put("data", "Algoritmo no válido: " + algorithm);
             return Response.status(Response.Status.BAD_REQUEST).entity(res).build();
         }
 
-        // Respuesta exitosa
         res.put("msg", "Proyectos ordenados");
         res.put("algoritmo", algorithm);
         res.put("tipo de orden", tipoorden);
@@ -200,7 +198,6 @@ public Response ordenarProyectosUnificado(
         return Response.ok(res).build();
 
     } catch (Exception e) {
-        // Manejo de errores
         res.put("msg", "ERROR");
         res.put("data", e.getMessage());
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
@@ -221,12 +218,9 @@ public Response buscarProyectoUnificado(
     try {
         LinkedList<Proyecto> proyectoEncontrado;
 
-        // Realizar la búsqueda basada en el tipo
         if ("binario".equalsIgnoreCase(tipoBusqueda)) {
-            // Búsqueda binaria
             proyectoEncontrado = proyectoDao.buscarBinario(criterio, valor);
         } else if ("lineal".equalsIgnoreCase(tipoBusqueda)) {
-            // Búsqueda lineal
             proyectoEncontrado = proyectoDao.buscarLineal(criterio, valor);
         } else {
             res.put("msg", "ERROR");
