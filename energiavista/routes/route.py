@@ -180,10 +180,10 @@ def ordenar_proyectos(algorithm, tipoorden, criterio):
     else:
         return jsonify({"message": "Error al ordenar los proyectos"}), 400 
     
-@router.route('/buscar/<tipoBusqueda>/<criterio>/<valor>')
-def buscar_proyectos(tipoBusqueda, criterio, valor):
+@router.route('/buscar/<tipoBusqueda>/<criterio2>/<valor>')
+def buscar_proyectos(tipoBusqueda, criterio2, valor):
     # Realizar la solicitud a la API con los parámetros
-    url = 'http://localhost:8099/api/proyecto/buscarproyecto/' + tipoBusqueda + "/" + criterio +"/" + valor 
+    url = 'http://localhost:8099/api/proyecto/buscarproyecto/' + tipoBusqueda + "/" + criterio2 +"/" + valor 
     r = requests.get(url)
 
     # Obtener la respuesta JSON de la API

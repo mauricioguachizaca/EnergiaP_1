@@ -72,8 +72,8 @@
                            </select>
                         </div>
                         <div class="col-12">
-                           <label for="criterio" class="col-form-label">Escoga el criterio por buscar:</label>
-                           <select id="criterio" name="criterio" class="form-select">
+                           <label for="criterio2" class="col-form-label">Escoga el criterio por buscar:</label>
+                           <select id="criterio2" name="criterio2" class="form-select">
                               <option value="nombre">Nombre</option>
                               <option value="inversion">Inversión</option>
                               <option value="acronimo">Acrónimo</option>
@@ -239,10 +239,10 @@
          e.preventDefault();
 
          const tipoBusqueda = $('#tipoBusqueda').val();
-         const criterio = $('#criterio').val();
+         const criterio2 = $('#criterio2').val();
          const valor = $('#valor').val();
 
-         const url = `/buscar/${tipoBusqueda}/${criterio}/${valor}`;
+         const url = `/buscar/${tipoBusqueda}/${criterio2}/${valor}`;
          enviarSolicitud(url);
       });
    });

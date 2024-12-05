@@ -204,12 +204,12 @@ public Response ordenarProyectosUnificado(
     }
 }
 
-@Path("/buscarproyecto/{tipoBusqueda}/{criterio}/{valor}")
+@Path("/buscarproyecto/{tipoBusqueda}/{criterio2}/{valor}")
 @GET
 @Produces(MediaType.APPLICATION_JSON)
 public Response buscarProyectoUnificado(
     @PathParam("tipoBusqueda") String tipoBusqueda,
-    @PathParam("criterio") String criterio, 
+    @PathParam("criterio2") String criterio, 
     @PathParam("valor") String valor) {
     
     HashMap<String, Object> res = new HashMap<>();
